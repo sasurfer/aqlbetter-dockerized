@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8088:80"  # Expose port 80 for HTTP
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - my_network
+    environment:
+      - MY_URL=http://localhost:8088
+
+networks:
+  my_network:

@@ -128,6 +128,8 @@ The option "--build" is needed only the first time it is created then can be omi
 
 Open a browser tab to localhost, fill the credentials and click "Start querying data".
 
+**NOTE**: If you want to change port from the default 80 then use the docker compose file docker-compose-port8088.yml instead of docker-compose.yml and modify 8088 into the port number you would like to use.
+
 ## OAUTH2
 ### EXAMPLE OF EHRBASE CONFIGURATION
 Create a directory for EHRBase and copy the following two files.
@@ -305,6 +307,8 @@ docker compose -f docker-compose-oauth2.yml up --build
 The option "--build" is needed only the first time it is created then can be omitted.
 
 Open a browser tab to localhost, fill the credentials and the client_secret and click "Start querying data".
+
+**NOTE**: If you want to change port from the default 80 then use the docker compose file docker-compose-oauth2-port8088.yml instead of docker-compose-oauth2.yml and modify 8088 into the port number you would like to use.
 
 ## Acknowledgments
 This work has been partially funded by the following sources:

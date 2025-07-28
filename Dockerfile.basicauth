@@ -22,12 +22,15 @@ FROM nginx:1.27.1
 # Add application files
 COPY --from=build-stage /app/dist/aql-builder/ /var/www/html
 COPY --from=build-stage /app/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY entrypoint.sh /entrypoint.sh
 
 RUN touch /var/run/nginx.pid && \
     chown -R www-data: /etc/nginx/ && \
     chown -R www-data: /var/run/nginx.pid && \
     chown -R www-data: /var/cache/nginx && \
-    chown -R www-data: /var/www/html
+    chown -R www-data: /var/www/html && \
+    chmod +x /entrypoint.sh
+
 
 USER www-data
 
@@ -37,4 +40,6 @@ EXPOSE 80
 
 STOPSIGNAL SIGTERM
 
-CMD ["nginx", "-g", "daemon off;"]
+#added to include my_url
+CMD ["/entrypoint.sh"]
+#CMD ["nginx", "-g", "daemon off;"]

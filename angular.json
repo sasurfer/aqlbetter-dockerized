@@ -191,6 +191,11 @@
                 "glob": "**/*",
                 "input": "node_modules/ngx-monaco-editor/assets/monaco",
                 "output": "/assets/monaco/"
+              },
+              {
+                "glob": "env.js",
+                "input": "projects/aql-builder/src/assets",
+                "output": "/"
               }
             ],
             "styles": [
@@ -334,7 +339,8 @@
           }
         }
       }
-    }},
+    }
+  },
   "cli": {
     "analytics": false
   },

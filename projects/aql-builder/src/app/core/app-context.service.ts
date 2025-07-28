@@ -14,8 +14,8 @@
  */
 
 import { Injectable } from '@angular/core';
-import {CommonUtil} from '../shared';
-import {StorageKey} from '../shared/models/app.model';
+import { CommonUtil } from '../shared';
+import { StorageKey } from '../shared/models/app.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +29,15 @@ export class AppContextService {
     this.initialize();
   }
 
-  getProxyUrl(): string{
-    return "http://localhost";
+  // getProxyUrl(): string{
+  //   return "http://localhost";
+  // }
+
+
+  getProxyUrl(): string {
+    const myapiUrl = (window as any)['env']?.MY_URL || 'http://localhost:8080';
+    console.log('Using proxy URL:', myapiUrl);
+    return myapiUrl;
   }
 
   getResourceUrl(): string {
@@ -46,7 +53,7 @@ export class AppContextService {
     return CommonUtil.removeTrailingSlash(this.resourceUrl) + '/rest/openehr/v1';
   }
 
-//ECIS
+  //ECIS
   // getRestUrlwt(): string {
   //   return CommonUtil.removeTrailingSlash(this.resourceUrl) + '/rest/ecis/v1';
   // }
@@ -63,8 +70,8 @@ export class AppContextService {
     return this.token;
   }
 
-  getCredentials(): {username: string, password: string} {
-    const credentials = {username: null, password: null};
+  getCredentials(): { username: string, password: string } {
+    const credentials = { username: null, password: null };
     if (!!this.getToken()) {
       try {
         const [username, password] = atob(this.getToken()).split(':');
